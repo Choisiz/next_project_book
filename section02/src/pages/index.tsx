@@ -1,17 +1,16 @@
 import { ReactNode } from 'react';
 import style from './index.module.css'
 import SearchLayout from '@/components/searchable-layout';
-import books from '@/mock/books.json'
 import BookItem from '@/components/book-Item';
-import { InferGetServerSidePropsType } from 'next';
+import {  InferGetStaticPropsType } from 'next';
 import fetchBooks from '@/lib/fetch-books';
 import fetchRandomBooks from '@/lib/fetch-random-books';
 
 /*ssr */
 //서버측에서 딱한번만 실행되는 함수
 //컴포넌트보다 먼저실행된다.
-export const getServerSideProps = async()=>{
-  
+export const getStaticProps = async()=>{
+  console.log('ww')
   
   const [allBooks, recoBooks] = await Promise.all([fetchBooks(),fetchRandomBooks()])
   
@@ -27,7 +26,7 @@ export const getServerSideProps = async()=>{
 export default function Home({
   allBooks,
   recoBooks
-}:InferGetServerSidePropsType<typeof getServerSideProps>) {
+}:InferGetStaticPropsType<typeof getStaticProps>) {
 
   return (
     <div className={style.container}>
