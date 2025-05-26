@@ -18,7 +18,8 @@ export const getStaticProps = async()=>{
     props:{
       allBooks,
       recoBooks
-    }
+    },
+    //revalidate:10
   }
 }
 
