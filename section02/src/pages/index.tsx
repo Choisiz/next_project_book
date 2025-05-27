@@ -15,7 +15,8 @@ export const getStaticProps = async()=>{
     props:{
       allBooks,
       recoBooks
-    }
+    },
+    //revalidate:10
   }
 }
 export default function Home({
