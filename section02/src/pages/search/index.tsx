@@ -1,22 +1,10 @@
 import SearchLayout from '@/components/searchable-layout';
 import { ReactNode, useEffect, useState } from "react";
 import BookItem from "@/components/book-Item";
-import {GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import fetchBooks from "@/lib/fetch-books";
 import { useRouter } from 'next/router';
 import { BookData } from '@/types';
-
-
-// export const getServerSideProps = async(context:GetServerSidePropsContext)=>{
-//   const q =context.query.q;
-//   const books = await fetchBooks(q as string)
-//   return {
-//     props:{
-//       books
-//     }
-//   }
-// }
-
+import Head from 'next/head';
 export default function Page(){
     const [books,setBooks] =useState<BookData[]>([])
     const router = useRouter()
@@ -35,6 +23,12 @@ export default function Page(){
 
     return(
       <div>
+        <Head>
+          <title>한입북스 - 검색결과</title>
+          <meta property='og:image' content='/thumbnail.png'/>
+          <meta property='og:title' content='한입북스'/>
+          <meta property='og:description' content='한입북스에 도서를 만나보세요'/>
+        </Head>
         {books.map((book)=><BookItem key={book.id} {...book}/>)}
       </div>
     )
