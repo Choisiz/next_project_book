@@ -3,6 +3,12 @@ import style from "./page.module.css";
 import books from "@/mock/books.json";
 import { BookData } from "@/types";
 
+//export const dynamic ='auto'
+//특정페이지의 유형을 스테틱 또는 다이니믹으로 설정(강제로)
+//auto: 기본값
+//force-dynamic: 페이지를 강제로 다이니믹
+//force-static: 페이지를 강제로 스테딕
+//force-static: 페이지를 강제로 스테틱(이유를 알려줌 즉 버그가 낮아짐)
 async function AllBooks(){
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book`,{cache:'force-cache'});
   if(!response.ok){
